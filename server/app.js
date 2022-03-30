@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv").config();
 
 const app = express();
 const PORT = 3000;
@@ -22,6 +24,25 @@ app.post("/users", async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Problem to register" });
+  }
+});
+
+app.post("/users/login", async (req, res) => {
+  const { username, password } = req.body.user;
+  const user = await User.login(username, password);
+  if (user) {
+    const userId = user._id.toString();
+    const token = jwt.sign(
+      { userId, username: user.username },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "60h",
+        subject: userId,
+      }
+    );
+    res.json({ token });
+  } else {
+    res.sendStatus(401);
   }
 });
 
