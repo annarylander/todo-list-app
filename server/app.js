@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
+const { Todo } = require("./models/Todo");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 
@@ -43,6 +44,20 @@ app.post("/users/login", async (req, res) => {
     res.json({ token });
   } else {
     res.sendStatus(401);
+  }
+});
+
+app.post("/todos", async (req, res) => {
+  const { title, body } = req.body.todo;
+  try {
+    const todo = await Todo.create({
+      title: title,
+      body: body,
+    });
+    res.status(201).json({ todo });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
   }
 });
 
