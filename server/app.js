@@ -10,9 +10,20 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+const requireLogin = (req, res, next) => {
+  const authHeader = req.header("Authorization");
+  try {
+    const token = authHeader.split(" ")[1];
+    req.user = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("inloggad");
+    console.log(token);
+    console.log(req.user);
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(401);
+  }
+};
 
 app.post("/users", async (req, res) => {
   const { username, password } = req.body.user;
@@ -21,7 +32,7 @@ app.post("/users", async (req, res) => {
       username: username,
       password: password,
     });
-    res.status(201).json({ user });
+    res.status(201).json({ username: user.username });
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: "Problem to register" });
@@ -47,16 +58,28 @@ app.post("/users/login", async (req, res) => {
   }
 });
 
-app.post("/todos", async (req, res) => {
-  const { title, body } = req.body.todo;
+app.post("/todos", requireLogin, async (req, res) => {
+  const { task } = req.body.todo;
   try {
     const todo = await Todo.create({
-      title: title,
-      body: body,
+      task: task,
+      author: req.user.userId,
     });
     res.status(201).json({ todo });
   } catch (err) {
     console.log(err);
+    res.status(400);
+  }
+});
+
+app.get("/todos", requireLogin, async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.userId });
+    const todos = await Todo.find({ author: req.user.userId })
+      .populate("author.username")
+      .sort({ published: -1 });
+    res.json({ todos: todos });
+  } catch {
     res.status(400);
   }
 });
