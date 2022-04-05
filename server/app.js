@@ -84,6 +84,20 @@ app.get("/todos", requireLogin, async (req, res) => {
   }
 });
 
+app.put("/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const todo = await Todo.updateOne(
+      { _id: id },
+      { $set: { completed: true } }
+    );
+    res.status(201).json({ message: "done" });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+  }
+});
+
 mongoose.connect("mongodb://localhost/todolist");
 app.listen(PORT, () => {
   console.log(`Started Express server on port ${PORT}`);
