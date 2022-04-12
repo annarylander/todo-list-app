@@ -105,6 +105,7 @@ app.get("/todos/completed", requireLogin, async (req, res) => {
   }
 });
 
+// complete a todo
 app.put("/todos/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -119,10 +120,10 @@ app.put("/todos/:id", async (req, res) => {
   }
 });
 
-app.get("/users", (req, res) => {
-  User.find({}, function (err, users) {
-    res.json({ users: users });
-  });
+//current user
+app.get("/users", requireLogin, async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+  res.json(user.username);
 });
 
 mongoose.connect("mongodb://localhost/todolist");
