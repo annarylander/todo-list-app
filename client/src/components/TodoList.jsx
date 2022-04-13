@@ -1,31 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
+import DoneIcon from "@mui/icons-material/Done";
 
-export default function TodoList() {
-  const [todoList, setTodoList] = useState();
+export default function TodoList(props) {
+  const todoList = props.todoList;
+  const [completed, setCompleted] = useState(null);
 
-  useEffect(() => {
-    const url = "http://localhost:8000/todos";
-    const token = localStorage.getItem("token");
-
-    fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setTodoList(data.todos));
-  }, []);
+  function finishTask() {
+    setCompleted(<DoneIcon />);
+  }
 
   return (
-    <div className="container">
+    <div className="">
       {todoList &&
         todoList.map((item, index) => {
           return (
             <div className="card" key={index}>
               <p>{item.task}</p>
               <p className="timestamp"> {moment(item.published).fromNow()}</p>
+              <button onClick={finishTask}>Finish</button>
+              <span>{completed}</span>
             </div>
           );
         })}

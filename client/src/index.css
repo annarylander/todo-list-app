@@ -43,8 +43,10 @@ button {
   background-color: rgba(4, 0, 77, 1);
 }
 form {
-  width: 360px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 30px;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -58,8 +60,38 @@ form {
   padding: 15px 30px;
   margin: 20px 0;
   text-align: start;
+  width: 360;
 }
 
 .timestamp {
   font-size: xx-small;
+}
+
+.navbar {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.navbar h1 {
+  color: #ffffff;
+  font-size: 30px;
+}
+.navbar .links {
+  margin-left: auto;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+  color: #ffffff;
+}
+.navbar a:hover {
+  color: rgb(100, 48, 167);
+}
+
+.logout {
+  background-color: rgb(100, 48, 167);
+  color: #fff;
 }
