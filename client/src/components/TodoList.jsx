@@ -17,7 +17,10 @@ export default function TodoList(props) {
           return (
             <div className="card" key={index}>
               <p>{item.task}</p>
-              <p className="timestamp"> {moment(item.published).fromNow()}</p>
+              <p className="timestamp">
+                {" "}
+                {moment(item.published).format("MMM Do YY")}
+              </p>
               <button onClick={finishTask}>Finish</button>
               <span>{completed}</span>
             </div>
