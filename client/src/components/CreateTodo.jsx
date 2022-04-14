@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PostCreate() {
+export default function PostCreate(props) {
   const [task, setTask] = useState("");
 
   function handleOnSubmit(e) {
@@ -16,7 +16,9 @@ export default function PostCreate() {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(payload),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => props.onSuccess());
   }
 
   return (
