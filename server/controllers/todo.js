@@ -3,10 +3,11 @@ const { Todo } = require("../models/Todo");
 const { requireLogin } = require("./auth");
 
 const createTodo = async (req, res) => {
-  const { task } = req.body;
+  const { task, detail } = req.body;
   try {
     const todo = await Todo.create({
       task: task,
+      detail: detail,
       author: req.user.userId,
     });
     res.status(201).json({ todo });
@@ -54,4 +55,16 @@ const completeTodo = async (req, res) => {
   }
 };
 
-module.exports = { createTodo, getAllTodos, getCompletedTodos, completeTodo };
+const getDetails = async (req, res) => {
+  const { id } = req.params;
+  const todo = await Todo.findOne({ _id: id });
+  res.json(todo);
+};
+
+module.exports = {
+  createTodo,
+  getAllTodos,
+  getCompletedTodos,
+  completeTodo,
+  getDetails,
+};

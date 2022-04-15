@@ -5,6 +5,9 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  detail: {
+    type: String,
+  },
   published: {
     type: Date,
     default: Date.now,
