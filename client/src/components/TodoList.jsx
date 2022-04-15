@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import DoneIcon from "@mui/icons-material/Done";
 
@@ -16,7 +17,10 @@ export default function TodoList(props) {
         todoList.map((item, index) => {
           return (
             <div className="card" key={index}>
-              <p>{item.task}</p>
+              <Link to={`/todo/${item._id}`}>
+                <p>{item.task}</p>
+              </Link>
+
               <p className="timestamp">
                 {" "}
                 {moment(item.published).format("MMM Do YY")}

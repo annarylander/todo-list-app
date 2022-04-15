@@ -4,7 +4,7 @@ export default function CompletedPage() {
   const [completedList, setCompletedList] = useState();
 
   useEffect(() => {
-    const url = "http://localhost:8000/todos/completed";
+    const url = "http://localhost:8000/todo/completed";
     const token = localStorage.getItem("token");
 
     fetch(url, {
