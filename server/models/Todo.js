@@ -23,6 +23,11 @@ const todoSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+
+  file: {
+    type: String,
+    required: false,
+  },
 });
 
 const Todo = mongoose.model("Todo", todoSchema);

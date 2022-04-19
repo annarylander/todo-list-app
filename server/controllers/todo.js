@@ -1,6 +1,7 @@
 const { User } = require("../models/User");
 const { Todo } = require("../models/Todo");
 const { requireLogin } = require("./auth");
+const multer = require("multer");
 
 const createTodo = async (req, res) => {
   const { task, detail } = req.body;
@@ -9,6 +10,7 @@ const createTodo = async (req, res) => {
       task: task,
       detail: detail,
       author: req.user.userId,
+      // file: req.file.path,
     });
     res.status(201).json({ todo });
   } catch (err) {
@@ -61,10 +63,36 @@ const getDetails = async (req, res) => {
   res.json(todo);
 };
 
+const updateTodo = async (req, res) => {
+  const { id } = req.params;
+  let updatedTodo = {};
+
+  if (req.body.task != "") {
+    updatedTodo.task = req.body.task;
+  }
+
+  if (req.body.detail != "") {
+    updatedTodo.detail = req.body.detail;
+  }
+
+  if (req.body.file != "") {
+    updatedTodo.file = `http://localhost:8000/uploads/${req.file.filename}`;
+  }
+
+  const todo = await Todo.updateOne(
+    { _id: id },
+    {
+      $set: updatedTodo,
+    },
+    res.status(201).json({ message: "done" })
+  );
+};
+
 module.exports = {
   createTodo,
   getAllTodos,
   getCompletedTodos,
   completeTodo,
   getDetails,
+  updateTodo,
 };
