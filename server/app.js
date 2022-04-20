@@ -10,7 +10,6 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use("/uploads", express.static("./uploads"));
 
 app.use("/users", require("./routes/userRoutes"));
 app.use("/todo", require("./routes/todoRoutes"));

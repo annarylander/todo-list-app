@@ -88,17 +88,22 @@ const updateTodo = async (req, res) => {
     updatedTodo.detail = req.body.detail;
   }
 
-  if (req.body.file != "") {
-    updatedTodo.file = `http://localhost:8000/uploads/${req.file.filename}`;
-  }
+  // if (req.body.file != "") {
+  //   updatedTodo.file = `http://localhost:8000/uploads/${req.file.filename}`;
+  // }
 
   const todo = await Todo.updateOne(
     { _id: id },
     {
       $set: updatedTodo,
-    },
-    res.status(201).json({ message: "done" })
+    }
   );
+
+  await Todo.updateOne(
+    { _id: id },
+    { $push: { file: `http://localhost:8000/uploads/${req.file.filename}` } }
+  );
+  res.status(201).json({ message: "update done" });
 };
 
 module.exports = {
