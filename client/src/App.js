@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 import CompletedPage from "./pages/CompletedPage";
 import DetailPage from "./pages/DetailPage";
+import CompletedDetails from "./components/CompletedDetails";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup" element={<Register />} />
           <Route path="/todo" element={<TodoPage />} />
           <Route path="/todo/completed" element={<CompletedPage />} />
+          <Route path="/todo/completed/:_id" element={<CompletedDetails />} />
           <Route path="/todo/:_id" element={<DetailPage />} />
         </Routes>
       </div>
