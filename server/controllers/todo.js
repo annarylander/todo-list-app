@@ -110,11 +110,8 @@ const updateTodo = async (req, res) => {
 
 const removeFile = async (req, res) => {
   const { id } = req.params;
-  console.log("kebab");
-  await Todo.updateOne(
-    { _id: id },
-    { $pull: { file: "http://localhost:8000/uploads/avatar2.png" } }
-  );
+  console.log(req.body.image);
+  await Todo.updateOne({ _id: id }, { $pull: { file: req.body.file } });
   res.status(201).json({ message: "file removed" });
 };
 
