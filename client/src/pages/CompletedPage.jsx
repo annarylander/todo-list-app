@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 export default function CompletedPage() {
@@ -24,7 +25,9 @@ export default function CompletedPage() {
         completedList.map((item, index) => {
           return (
             <div className="card" key={index}>
-              <p>◦ {item.task}</p>
+              <Link to={`/todo/completed/${item._id}`}>
+                <p>◦ {item.task}</p>
+              </Link>
               <p className="timestamp">
                 {moment(item.published).format("MMM Do YY")}
               </p>

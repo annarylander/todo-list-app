@@ -25,6 +25,10 @@ export default function TodoPage() {
       .then((data) => setTodoList(data.todos));
   }
 
+  if (!todoList) {
+    return <p>No todos added</p>;
+  }
+
   return (
     <div className="container">
       {user}

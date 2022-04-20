@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import DoneIcon from "@mui/icons-material/Done";
-import EditTodo from "../components/EditTodo";
 
 export default function TodoDetail() {
   const [completed, setCompleted] = useState("Finish");
