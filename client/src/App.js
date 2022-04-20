@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import Register from "./components/Register";
 import Navbar from "./components/Navbar";
 import CompletedPage from "./pages/CompletedPage";
+import DetailPage from "./pages/DetailPage";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/signup" element={<Register />} />
           <Route path="/todo" element={<TodoPage />} />
           <Route path="/todo/completed" element={<CompletedPage />} />
-          <Route path="/todo/:userId" element={<TodoPage />} />
+          <Route path="/todo/:_id" element={<DetailPage />} />
         </Routes>
       </div>
     </UserProvider>

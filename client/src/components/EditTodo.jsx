@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
-export default function PostCreate(props) {
+export default function EditTodo(props) {
   const [task, setTask] = useState("");
   const [detail, setDetail] = useState("");
+  const { _id } = useParams();
 
   function handleOnSubmit(e) {
     e.preventDefault();
     const payload = { task, detail };
-    const url = "http://localhost:8000/todo";
+    const url = `http://localhost:8000/todo/${_id}`;
     const token = localStorage.getItem("token");
 
     fetch(url, {
@@ -19,14 +21,13 @@ export default function PostCreate(props) {
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
-      .then((data) => props.onSuccess());
+      .then((data) => console.log(data));
   }
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <label>Add a todo</label>
-
+      <form>
+        <label>Edit</label>
         <input
           type="text"
           placeholder="task"
@@ -35,7 +36,7 @@ export default function PostCreate(props) {
         />
         <input
           type="text"
-          placeholder="details (optional)"
+          placeholder="details"
           value={detail}
           onChange={(e) => setDetail(e.target.value)}
         />

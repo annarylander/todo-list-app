@@ -5,6 +5,9 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  detail: {
+    type: String,
+  },
   published: {
     type: Date,
     default: Date.now,
@@ -19,6 +22,11 @@ const todoSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+
+  file: {
+    type: String,
+    required: false,
   },
 });
 

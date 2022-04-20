@@ -10,9 +10,10 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+app.use("/uploads", express.static("./uploads"));
 
 app.use("/users", require("./routes/userRoutes"));
-app.use("/todos", require("./routes/todoRoutes"));
+app.use("/todo", require("./routes/todoRoutes"));
 
 mongoose.connect("mongodb://localhost/todolist");
 app.listen(PORT, () => {
