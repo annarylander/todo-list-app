@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 
 export default function CompletedPage() {
   const [completedList, setCompletedList] = useState();
@@ -23,7 +24,10 @@ export default function CompletedPage() {
         completedList.map((item, index) => {
           return (
             <div className="card" key={index}>
-              <p>{item.task}</p>
+              <p>◦ {item.task}</p>
+              <p className="timestamp">
+                {moment(item.published).format("MMM Do YY")}
+              </p>
             </div>
           );
         })}

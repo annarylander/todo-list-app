@@ -13,6 +13,7 @@ export default function TodoDetail() {
   const token = localStorage.getItem("token");
   const [task, setTask] = useState("");
   const [detail, setDetail] = useState("");
+  const [file, setFile] = useState("");
 
   useEffect(() => {
     fetchDetail();
@@ -40,17 +41,21 @@ export default function TodoDetail() {
       .then((data) => setData(data));
   }
 
-  function handleOnSubmit(e) {
+  function updateTodo(e) {
+    const formData = new FormData();
+    formData.append("task", task);
+    formData.append("detail", detail);
+    formData.append("file", file);
     e.preventDefault();
-    const payload = { task, detail };
+    console.log(formData.get("file"));
+    //const payload = { task, detail };
 
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(payload),
+      body: formData,
     })
       .then((res) => res.json())
       .then((data) => fetchDetail());
@@ -60,19 +65,21 @@ export default function TodoDetail() {
     <>
       <div className="card-detail">
         <div className="content">
+          <h3>Task</h3>
           <p>{data.task}</p>
+          <h3> Details: </h3>
           <p>{data.detail}</p>
+          <h3>Files </h3>
+          <p>{data.file}</p>
           <p className="timestamp">
-            {" "}
-            {moment(data.published).format("MMM Do YY")}
+            {moment(data.published).format("MMM Do YY")}{" "}
           </p>
         </div>
         <div className="todo-button">
           <button onClick={finishTask}>{completed}</button>
-          <button>Edit</button>
         </div>
       </div>
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={updateTodo} encType="multipart/form-data">
         <label>Edit</label>
         <input
           type="text"
@@ -86,7 +93,8 @@ export default function TodoDetail() {
           value={detail}
           onChange={(e) => setDetail(e.target.value)}
         />
-        <button type="submit">Add</button>
+        <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
+        <button type="submit">Save</button>
       </form>
     </>
   );

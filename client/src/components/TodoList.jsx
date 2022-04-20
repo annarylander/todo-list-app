@@ -12,7 +12,7 @@ export default function TodoList(props) {
           return (
             <div className="card" key={index}>
               <Link to={`/todo/${item._id}`}>
-                <p>{item.task}</p>
+                <p>◦ {item.task}</p>
               </Link>
               <p className="timestamp">
                 {" "}
