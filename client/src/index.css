@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -91,7 +90,7 @@ form input {
   color: #ffffff;
 }
 .navbar a:hover {
-  color: rgb(100, 48, 167);
+  color: rgb(121, 81, 174);
 }
 
 .logout {
@@ -116,8 +115,20 @@ form input {
   flex-direction: column;
 }
 
-.h3 {
-  font-size: 15px;
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  padding-top: 10px;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+li {
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .timestamp {
@@ -128,4 +139,18 @@ form input {
 a {
   text-decoration: none;
   color: #000;
+}
+
+.uploads {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.uploads button {
+  font-size: 10px;
+  margin: 0;
+  width: 70px;
+  height: 20px;
+  margin-left: 10px;
 }

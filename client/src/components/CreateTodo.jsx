@@ -39,7 +39,7 @@ export default function PostCreate(props) {
           value={detail}
           onChange={(e) => setDetail(e.target.value)}
         />
-        <button type="submit">Add</button>
+        <button type="submit">Save</button>
       </form>
     </div>
   );
