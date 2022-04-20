@@ -8,6 +8,7 @@ const {
   completeTodo,
   getDetails,
   updateTodo,
+  resetTodo,
 } = require("../controllers/todo");
 const { authUser } = require("../controllers/auth");
 
@@ -23,6 +24,7 @@ const file = multer({ storage: storage }).single("file");
 router.post("/", authUser, createTodo);
 router.get("/", authUser, getAllTodos);
 router.get("/completed", authUser, getCompletedTodos);
+router.put("/completed/:id", authUser, resetTodo);
 router.put("/:id", authUser, completeTodo, updateTodo);
 router.post("/:id", authUser, file, updateTodo);
 router.get("/:id", getDetails);

@@ -10,7 +10,6 @@ const createTodo = async (req, res) => {
       task: task,
       detail: detail,
       author: req.user.userId,
-      // file: req.file.path,
     });
     res.status(201).json({ todo });
   } catch (err) {
@@ -57,6 +56,20 @@ const completeTodo = async (req, res) => {
   }
 };
 
+const resetTodo = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const todo = await Todo.updateOne(
+      { _id: id },
+      { $set: { completed: false } }
+    );
+    res.status(201).json({ message: "reset done" });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+  }
+};
+
 const getDetails = async (req, res) => {
   const { id } = req.params;
   const todo = await Todo.findOne({ _id: id });
@@ -95,4 +108,5 @@ module.exports = {
   completeTodo,
   getDetails,
   updateTodo,
+  resetTodo,
 };
