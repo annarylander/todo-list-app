@@ -9,6 +9,7 @@ const {
   getDetails,
   updateTodo,
   resetTodo,
+  removeFile,
 } = require("../controllers/todo");
 const { authUser } = require("../controllers/auth");
 
@@ -25,7 +26,7 @@ router.post("/", authUser, createTodo);
 router.get("/", authUser, getAllTodos);
 router.get("/completed", authUser, getCompletedTodos);
 router.put("/completed/:id", authUser, resetTodo);
-router.put("/:id", authUser, completeTodo, updateTodo);
+router.put("/:id", authUser, removeFile, completeTodo);
 router.post("/:id", authUser, file, updateTodo);
 router.get("/:id", getDetails);
 

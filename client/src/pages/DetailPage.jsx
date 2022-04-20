@@ -47,7 +47,6 @@ export default function TodoDetail() {
     formData.append("file", file);
     e.preventDefault();
     console.log(formData.get("file"));
-    //const payload = { task, detail };
 
     fetch(url, {
       method: "POST",
@@ -60,6 +59,27 @@ export default function TodoDetail() {
       .then((data) => fetchDetail());
   }
 
+  function removeFile(value) {
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ file: value }),
+    }).then((res) => console.log("file removed"));
+  }
+
+  // const removeFile = (value) => () =>
+  //   fetch(url, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     body: JSON.stringify({ file: value }),
+  //   }).then((data) => fetchDetail());
+
   return (
     <>
       <div className="card-detail">
@@ -69,7 +89,15 @@ export default function TodoDetail() {
           <h3> Details: </h3>
           <p>{data.detail}</p>
           <h3>Files </h3>
-          <p>{data.file}</p>
+          {data.file &&
+            data.file.map((item, index) => {
+              return (
+                <div className="uploads" key={index}>
+                  <li>{item.split("/")[4]}</li>
+                  <button onClick={removeFile(item)}>Remove</button>
+                </div>
+              );
+            })}
           <p className="timestamp">
             {moment(data.published).format("MMM Do YY")}{" "}
           </p>

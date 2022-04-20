@@ -1,7 +1,6 @@
 const { User } = require("../models/User");
 const { Todo } = require("../models/Todo");
 const { requireLogin } = require("./auth");
-const multer = require("multer");
 
 const createTodo = async (req, res) => {
   const { task, detail } = req.body;
@@ -88,17 +87,32 @@ const updateTodo = async (req, res) => {
     updatedTodo.detail = req.body.detail;
   }
 
-  if (req.body.file != "") {
-    updatedTodo.file = `http://localhost:8000/uploads/${req.file.filename}`;
-  }
+  // fixa om fil tom
+  // if (req.body.file != "") {
+  //   updatedTodo.file = `http://localhost:8000/uploads/${req.file.filename}`;
+  // }
 
   const todo = await Todo.updateOne(
     { _id: id },
     {
       $set: updatedTodo,
-    },
-    res.status(201).json({ message: "done" })
+    }
   );
+
+  await Todo.updateOne(
+    { _id: id },
+    {
+      $addToSet: { file: `http://localhost:8000/uploads/${req.file.filename}` },
+    }
+  );
+  res.status(201).json({ message: "update done" });
+};
+
+const removeFile = async (req, res) => {
+  const { id } = req.params;
+  console.log(req.body.image);
+  await Todo.updateOne({ _id: id }, { $pull: { file: req.body.file } });
+  res.status(201).json({ message: "file removed" });
 };
 
 module.exports = {
@@ -109,4 +123,5 @@ module.exports = {
   getDetails,
   updateTodo,
   resetTodo,
+  removeFile,
 };
