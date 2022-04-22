@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import CompletedPage from "./pages/CompletedPage";
 import DetailPage from "./pages/DetailPage";
 import CompletedDetails from "./components/CompletedDetails";
+import Search from "./components/Search";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/todo/completed" element={<CompletedPage />} />
           <Route path="/todo/completed/:_id" element={<CompletedDetails />} />
           <Route path="/todo/:_id" element={<DetailPage />} />
+          <Route path="/todo/search" element={<Search />} />
         </Routes>
       </div>
     </UserProvider>

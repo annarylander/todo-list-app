@@ -13,6 +13,7 @@ export default function Navbar() {
         <div className="links">
           <Link to="/todo"> All todos</Link>
           <Link to="/todo/completed"> Completed</Link>
+          <Link to="/todo/search"> Search</Link>
 
           <Logout />
         </div>

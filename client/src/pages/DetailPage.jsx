@@ -108,7 +108,7 @@ export default function TodoDetail() {
           placeholder="details"
           value={detail}
           onChange={(e) => setDetail(e.target.value)}
-        />
+        />{" "}
         <input type="file" onChange={(e) => setFile(e.target.files[0])}></input>
         <button type="submit">Save</button>
       </form>
