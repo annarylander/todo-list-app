@@ -115,6 +115,12 @@ const removeFile = async (req, res) => {
   res.status(201).json({ message: "file removed" });
 };
 
+const searchTodo = async (req, res) => {
+  console.log("search");
+  const results = await Todo.find({ $text: { $search: req.body.query } });
+  res.status(201).json({ results });
+};
+
 module.exports = {
   createTodo,
   getAllTodos,
@@ -124,4 +130,5 @@ module.exports = {
   updateTodo,
   resetTodo,
   removeFile,
+  searchTodo,
 };
