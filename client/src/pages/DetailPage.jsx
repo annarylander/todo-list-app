@@ -59,26 +59,15 @@ export default function TodoDetail() {
       .then((data) => fetchDetail());
   }
 
-  function removeFile(value) {
+  const removeFile = (value) => () =>
     fetch(url, {
-      method: "PUT",
+      method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ file: value }),
-    }).then((res) => console.log("file removed"));
-  }
-
-  // const removeFile = (value) => () =>
-  //   fetch(url, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //     body: JSON.stringify({ file: value }),
-  //   }).then((data) => fetchDetail());
+    }).then((data) => fetchDetail());
 
   return (
     <>
