@@ -26,7 +26,8 @@ router.post("/", authUser, createTodo);
 router.get("/", authUser, getAllTodos);
 router.get("/completed", authUser, getCompletedTodos);
 router.put("/completed/:id", authUser, resetTodo);
-router.put("/:id", authUser, removeFile, completeTodo);
+router.put("/:id", authUser, completeTodo);
+router.delete("/:id", authUser, removeFile);
 router.post("/:id", authUser, file, updateTodo);
 router.get("/:id", getDetails);
 
