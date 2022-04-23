@@ -22,7 +22,7 @@ const getAllTodos = async (req, res) => {
     const user = await User.findOne({ _id: req.user.userId });
     const todos = await Todo.find({ author: req.user.userId, completed: false })
       .populate("author.username")
-      .sort({ published: -1 });
+      .sort({ task: -1 });
     res.json({ todos: todos });
   } catch {
     res.status(400);
@@ -71,8 +71,13 @@ const resetTodo = async (req, res) => {
 
 const getDetails = async (req, res) => {
   const { id } = req.params;
-  const todo = await Todo.findOne({ _id: id });
-  res.json(todo);
+  try {
+    const todo = await Todo.findOne({ _id: id });
+    res.json(todo);
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+  }
 };
 
 const updateTodo = async (req, res) => {
@@ -110,18 +115,15 @@ const updateTodo = async (req, res) => {
 
 const removeFile = async (req, res) => {
   const { id } = req.params;
-  console.log(req.body.image);
-  await Todo.updateOne({ _id: id }, { $pull: { file: req.body.file } });
-  res.status(201).json({ message: "file removed" });
+  try {
+    await Todo.updateOne({ _id: id }, { $pull: { file: req.body.file } });
+    res.status(201).json({ message: "file removed" });
+  } catch (err) {
+    console.log(err);
+    res.status(400);
+  }
 };
 
-// const searchTodo = async (req, res) => {
-//   console.log("search");
-//   const results = await Todo.find({ $text: { $search: req.body.query } });
-//   res.status(201).json({ results });
-// };
-
-// case insensitive
 const searchTodo = async (req, res) => {
   console.log("search");
   const results = await Todo.find({

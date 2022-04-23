@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data.username));
+      .then((data) => console.log(data));
   }, []);
 
   return (

@@ -9,6 +9,7 @@ const authUser = (req, res, next) => {
     console.log("inloggad");
     console.log(token);
     console.log(req.user);
+    req.user.token = token;
     next();
   } catch (err) {
     console.log(err);

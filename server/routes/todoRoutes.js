@@ -25,7 +25,7 @@ const file = multer({ storage: storage }).single("file");
 
 router.post("/", authUser, createTodo);
 router.get("/", authUser, getAllTodos);
-router.post("/search", searchTodo);
+router.post("/search", authUser, searchTodo);
 router.get("/completed", authUser, getCompletedTodos);
 router.put("/completed/:id", authUser, resetTodo);
 router.put("/:id", authUser, completeTodo);
