@@ -83,6 +83,7 @@ const getDetails = async (req, res) => {
 const updateTodo = async (req, res) => {
   const { id } = req.params;
   let updatedTodo = {};
+  let imageUpload = {};
 
   if (req.body.task != "") {
     updatedTodo.task = req.body.task;
@@ -92,22 +93,17 @@ const updateTodo = async (req, res) => {
     updatedTodo.detail = req.body.detail;
   }
 
-  // fixa om fil tom
-  // if (req.body.file != "") {
-  //   updatedTodo.file = `http://localhost:8000/uploads/${req.file.filename}`;
-  // }
+  if (req.file != null) {
+    imageUpload = {
+      file: `http://localhost:8000/uploads/${req.file.filename}`,
+    };
+  }
 
   const todo = await Todo.updateOne(
     { _id: id },
     {
       $set: updatedTodo,
-    }
-  );
-
-  await Todo.updateOne(
-    { _id: id },
-    {
-      $addToSet: { file: `http://localhost:8000/uploads/${req.file.filename}` },
+      $addToSet: imageUpload,
     }
   );
   res.status(201).json({ message: "update done" });
