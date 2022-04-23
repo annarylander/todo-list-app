@@ -29,6 +29,7 @@ const todoSchema = new mongoose.Schema({
     required: false,
   },
 });
+todoSchema.index({ task: "text" });
 
 const Todo = mongoose.model("Todo", todoSchema);
 
