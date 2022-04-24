@@ -11,6 +11,7 @@ const {
   resetTodo,
   removeFile,
   searchTodo,
+  sortTodo,
 } = require("../controllers/todo");
 const { authUser } = require("../controllers/auth");
 
@@ -28,6 +29,8 @@ router.get("/", authUser, getAllTodos);
 router.post("/search", authUser, searchTodo);
 router.get("/completed", authUser, getCompletedTodos);
 router.put("/completed/:id", authUser, resetTodo);
+router.get("/search/:column/:order", authUser, sortTodo);
+
 router.put("/:id", authUser, completeTodo);
 router.delete("/:id", authUser, removeFile);
 router.post("/:id", authUser, file, updateTodo);

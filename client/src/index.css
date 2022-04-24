@@ -36,6 +36,16 @@ button {
   margin-top: 10px;
 }
 
+.smallBtn {
+  background-color: rgb(100, 48, 167);
+  color: #fff;
+  font-size: 10px;
+  margin: 0;
+  width: 70px;
+  height: 20px;
+  margin-left: 10px;
+}
+
 .register {
   margin-top: 40px;
   color: rgb(255, 255, 255);
@@ -110,6 +120,14 @@ form input {
   justify-content: space-between;
 }
 
+.card-sort {
+  padding: 10px 0px;
+  margin: 20px 0;
+  width: 360;
+  display: flex;
+  color: #fff;
+}
+
 .todo-button {
   display: flex;
   flex-direction: column;
@@ -145,12 +163,4 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.uploads button {
-  font-size: 10px;
-  margin: 0;
-  width: 70px;
-  height: 20px;
-  margin-left: 10px;
 }
