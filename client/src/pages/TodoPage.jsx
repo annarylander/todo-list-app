@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import TodoList from "../components/TodoList";
 import CreateTodo from "../components/CreateTodo";
+import Sort from "../components/Sort";
 import UserContext from "../context/UserContext";
 
 export default function TodoPage() {
@@ -33,6 +34,7 @@ export default function TodoPage() {
     <div className="container">
       {user}
       <CreateTodo onSuccess={fetchTodos} />
+      <Sort />
       <TodoList todoList={todoList} />
     </div>
   );

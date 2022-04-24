@@ -83,7 +83,9 @@ export default function TodoDetail() {
               return (
                 <div className="uploads" key={index}>
                   <li>{item.split("/")[4]}</li>
-                  <button onClick={removeFile(item)}>Remove</button>
+                  <button className="smallBtn" onClick={removeFile(item)}>
+                    Remove
+                  </button>
                 </div>
               );
             })}
