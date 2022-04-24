@@ -6,9 +6,6 @@ const authUser = (req, res, next) => {
   try {
     const token = authHeader.split(" ")[1];
     req.user = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("inloggad");
-    console.log(token);
-    console.log(req.user);
     req.user.token = token;
     next();
   } catch (err) {

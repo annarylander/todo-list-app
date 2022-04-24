@@ -121,7 +121,6 @@ const removeFile = async (req, res) => {
 };
 
 const searchTodo = async (req, res) => {
-  console.log("search");
   const results = await Todo.find({
     task: { $regex: req.body.query, $options: "i" },
   });
