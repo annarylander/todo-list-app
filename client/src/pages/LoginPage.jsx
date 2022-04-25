@@ -8,7 +8,10 @@ export default function LoginPage() {
       <Login />
 
       <Link to="/signup">
-        <button className="register"> Skapa konto</button>
+        <div className="register">
+          <p> Don't have an account?</p>
+          <button> Sign up </button>
+        </div>
       </Link>
     </div>
   );

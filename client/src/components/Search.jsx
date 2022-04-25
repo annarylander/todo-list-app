@@ -22,6 +22,10 @@ export default function Search() {
       .then((data) => setResult(data.results));
   }
 
+  if (!result) {
+    return <p>Please log in</p>;
+  }
+
   return (
     <>
       <div>

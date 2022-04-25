@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 export default function PostCreate(props) {
   const [task, setTask] = useState("");
-  const [detail, setDetail] = useState("");
+  // const [detail, setDetail] = useState("");
 
   function handleOnSubmit(e) {
     e.preventDefault();
-    const payload = { task, detail };
+    const payload = { task };
     const url = "http://localhost:8000/todo";
     const token = localStorage.getItem("token");
 
@@ -33,12 +33,12 @@ export default function PostCreate(props) {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <input
+        {/* <input
           type="text"
           placeholder="details (optional)"
           value={detail}
           onChange={(e) => setDetail(e.target.value)}
-        />
+        /> */}
         <button type="submit">Save</button>
       </form>
     </div>

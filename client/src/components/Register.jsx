@@ -23,20 +23,20 @@ export default function UserCreate() {
   return (
     <div className="container">
       <form onSubmit={handleOnSubmit}>
-        <h2> Har du inget konto? </h2>
+        <h2> Create account </h2>
         <input
           type="text"
-          placeholder="Namn"
+          placeholder="Name"
           value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Lösenord"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Skapa konto</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
