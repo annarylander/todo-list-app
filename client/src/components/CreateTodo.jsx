@@ -29,7 +29,7 @@ export default function PostCreate(props) {
 
         <input
           type="text"
-          placeholder="task"
+          placeholder="Write your todo here"
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />

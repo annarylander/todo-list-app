@@ -5,7 +5,7 @@ import moment from "moment";
 import DoneIcon from "@mui/icons-material/Done";
 
 export default function TodoDetail() {
-  const [completed, setCompleted] = useState("Finish");
+  const [completed, setCompleted] = useState("Complete");
   const { _id } = useParams();
   const [data, setData] = useState("");
   const url = `http://localhost:8000/todo/${_id}`;
