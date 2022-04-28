@@ -19,7 +19,6 @@ const createTodo = async (req, res) => {
 
 const getAllTodos = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user.userId });
     const todos = await Todo.find({ author: req.user.userId, completed: false })
       .populate("author.username")
       .sort({ published: -1 });
@@ -33,7 +32,6 @@ const sortTodo = async (req, res) => {
   const { column } = req.params.column;
   const { order } = req.params.order;
   try {
-    const user = await User.findOne({ _id: req.user.userId });
     const todos = await Todo.find({ author: req.user.userId, completed: false })
       .populate("author.username")
       .sort({ column: order });
@@ -46,7 +44,6 @@ const sortTodo = async (req, res) => {
 
 const getCompletedTodos = async (req, res) => {
   try {
-    const user = await User.findOne({ _id: req.user.userId });
     const todos = await Todo.find({ author: req.user.userId, completed: true })
       .populate("author.username")
       .sort({ published: -1 });

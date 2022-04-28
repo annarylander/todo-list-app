@@ -27,7 +27,7 @@ export default function TodoPage() {
   }
 
   if (!todoList) {
-    return <p>No todos added</p>;
+    return <p>Please log in</p>;
   }
 
   return (

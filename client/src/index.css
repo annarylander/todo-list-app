@@ -9,10 +9,10 @@ body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(
     90deg,
-    rgba(4, 0, 77, 1) 20%,
-    rgb(100, 48, 167) 100%
+    rgb(133, 169, 255) 20%,
+    rgb(214, 226, 255) 100%
   );
-  color: rgb(0, 0, 0);
+  color: #001852;
   line-height: 1.6;
   display: flex;
   justify-content: center;
@@ -26,7 +26,6 @@ body {
 }
 
 button {
-  color: rgb(4, 4, 4);
   border: 0;
   border-radius: 8px;
   color: #000;
@@ -37,7 +36,7 @@ button {
 }
 
 .smallBtn {
-  background-color: rgb(100, 48, 167);
+  background-color: rgb(163, 191, 255);
   color: #fff;
   font-size: 10px;
   margin: 0;
@@ -46,11 +45,20 @@ button {
   margin-left: 10px;
 }
 
+.smallBtn:hover {
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
 .register {
   margin-top: 40px;
   color: rgb(255, 255, 255);
-  background-color: rgba(4, 0, 77, 1);
 }
+
+.register button {
+  background-color: #85a9ff;
+  color: #fff;
+}
+
 form {
   margin: 0 auto;
   display: flex;
@@ -71,12 +79,13 @@ form input {
 
 .card {
   background-color: #fff;
-  color: #333;
+  color: #001852;
   border-radius: 5px;
   padding: 15px 30px;
   margin: 20px 0;
   text-align: start;
   width: 360;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .navbar {
@@ -100,17 +109,18 @@ form input {
   color: #ffffff;
 }
 .navbar a:hover {
-  color: rgb(121, 81, 174);
+  color: #85a9ff;
 }
 
 .logout {
-  background-color: rgb(100, 48, 167);
+  background-color: transparent;
   color: #fff;
+  font-size: 16px;
 }
 
 .card-detail {
   background-color: #fff;
-  color: #333;
+  color: #001852;
   border-radius: 5px;
   padding: 15px 30px;
   margin: 20px 0;
@@ -142,6 +152,7 @@ h3 {
 p {
   font-size: 14px;
   font-weight: 300;
+  color: #001852;
 }
 
 li {

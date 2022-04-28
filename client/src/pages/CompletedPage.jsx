@@ -19,6 +19,10 @@ export default function CompletedPage() {
       .then((data) => setCompletedList(data.todos));
   }, []);
 
+  if (!completedList) {
+    return <p>Please log in</p>;
+  }
+
   return (
     <div className="">
       {completedList &&

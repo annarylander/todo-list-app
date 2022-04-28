@@ -29,20 +29,19 @@ export default function Login() {
   return (
     <div className="container">
       <form onSubmit={handleOnSubmit}>
-        <h2> Logga in</h2>
         <input
           type="text"
-          placeholder="Namn"
+          placeholder="Name"
           value={username}
           onChange={(e) => setUserName(e.target.value)}
         />
         <input
-          type="password"
+          type="Password"
           placeholder="Lösenord"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Logga in</button>
+        <button type="submit">Log in</button>
       </form>
     </div>
   );
